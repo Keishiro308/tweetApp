@@ -1,0 +1,9 @@
+<%= provide :title, 'Edit'%>
+<%= provide :button_text, '保存する'%>
+<h1>ユーザー情報編集</h1>
+<%= render "form", user: @user, url: user_path(@user) %>
+<% if current_user?(@user) %>
+  <h3>アカウント削除</h3>
+  <%= link_to 'アカウント削除',user_path(@user), method: :delete,
+  data:{ confirm: '本当に削除しますか？'}, class: 'btn btn-danger' %>
+<% end %>

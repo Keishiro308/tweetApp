@@ -1,7 +1,7 @@
 <% if @user.errors.any? %>
   <div id="error_explanation">
     <div class="alert alert-danger">
-      <%= "#{@user.errors.count}つのエラーがあります。"%>.
+      <%= "#{@user.errors.count}つのエラーがあります。"%>
     </div>
     <ul>
     <% @user.errors.full_messages.each do |msg| %>

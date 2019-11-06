@@ -18,7 +18,7 @@
           </a>
           <div class="dropdown-menu" aria-labelledby="navbarDropdown">
             <%= link_to "Profile", current_user, class: 'dropdown-item'%>
-            <a class="dropdown-item" href="#">Another action</a>
+            <%= link_to "Setting", edit_user_path(current_user), class: 'dropdown-item'%>
             <div class="dropdown-divider"></div>
             <a class="dropdown-item" href="#">Something else here</a>
           </div>

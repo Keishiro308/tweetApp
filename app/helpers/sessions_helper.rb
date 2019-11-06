@@ -16,6 +16,10 @@ module SessionsHelper
     end
   end
 
+  def current_user?(user)
+    current_user == user
+  end
+
   def logged_in?
     !current_user.nil?
   end
@@ -37,5 +41,14 @@ module SessionsHelper
     forget(current_user)
     session.delete(:user_id)
     @current_user = nil
+  end
+
+  def redirect_back_or(default)
+    redirect_to(session[:fowarding_url] || default)
+    session.delete(:fowarding_url)
+  end
+
+  def store_location
+    session[:fowarding_url] = request.original_url if request.get?
   end
 end
