@@ -5,10 +5,15 @@ class SessionsController < ApplicationController
   def create
     @user = User.find_by(email: params[:session][:email].downcase)
     if @user && @user.authenticate(params[:session][:password])
-      remember @user
-      log_in @user
-      params[:session][:remember_me] == '1'? remember(@user) : forget(@user)
-      redirect_back_or(@user)
+      if @user.activated?
+        log_in @user
+        params[:session][:remember_me] == '1'? remember(@user) : forget(@user)
+        redirect_back_or(@user)
+      else
+        message = 'アカウントが認証されていません。認証メールが来ていないかチェックしてください。'
+        flash[:danger] = message
+        redirect_to root_url
+      end
     else
       flash.now[:danger] = "メールアドレスまたはパスワードが間違っています。"
       render 'new'

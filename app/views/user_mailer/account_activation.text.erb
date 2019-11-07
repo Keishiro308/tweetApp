@@ -1,0 +1,3 @@
+こんにちは、<%= @user.name %>さん
+このメールはTweetAppのアカウントを認証するためのメールです。リンクをクリックまたはタップして認証を完了させてください。:
+<%= edit_acount_activation_url(@user.activation_token, email: @user.email) %>

@@ -1,0 +1,6 @@
+<p><%= @user.name %>さん、こんにちは</p>
+<p>
+  このメールはtweetappのアカウントを認証するためのメールです。下のリンクをタップまたはクリックして認証を完了してください。
+</p>
+<%= link_to "認証", edit_acount_activation_url(@user.activation_token,
+                                                    email: @user.email) %>
