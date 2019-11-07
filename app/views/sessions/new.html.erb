@@ -10,6 +10,7 @@
 
     <div class="form-group">
       <%= form.label :password, class: "control-label" %>
+      <%= link_to "(パスワードを忘れた方はこちら)", new_password_rest_path %>
       <%= form.password_field :password, class: "form-control" %>
     </div>
 

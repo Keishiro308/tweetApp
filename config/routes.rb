@@ -7,5 +7,6 @@ Rails.application.routes.draw do
   post '/signup', to: 'users#create'
   resources :users
   resources :acount_activations, only:[:edit]
+  resources :password_rests, only:[:new,:create, :edit, :update]
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
 end
