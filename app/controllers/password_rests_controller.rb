@@ -14,7 +14,7 @@ class PasswordRestsController < ApplicationController
       flash[:info] = 'メールからパスワードをリセットしてください。'
       redirect_to root_url
     else
-      flash[:danger] = 'メールの送信に失敗しました。'
+      flash.now[:danger] = 'メールの送信に失敗しました。'
       render 'new'
     end
   end

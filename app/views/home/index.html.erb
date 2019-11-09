@@ -1,8 +1,25 @@
 <% provide(:title, 'Home')%>
-<div class="jumbotron text-center">
-  <h1 class="display-4">TweetAppへようこそ</h1>
-  <p class="lead">これは勉強用に作ったTwitterのようなアプリです。</p>
-  <hr class="my-4">
-  <p>下のボタンから新規登録できます。</p>
-  <%= link_to "新規登録", signup_path, class:'btn btn-primary btn-lg'%>
-</div>
+<% if logged_in? %>
+  <div class="row">
+    <aside class="col-md-4">
+      <section class="user_info">
+        <%= render 'shared/user_info' %>
+      </section>
+      <section class="post_form">
+        <%= render 'shared/post_form' %>
+      </section>
+    </aside>
+    <div class="col-md-8">
+      <h3>Post Feed</h3>
+      <%= render 'shared/feed' %>
+    </div>
+  </div>
+<% else %>
+  <div class="jumbotron text-center">
+    <h1 class="display-4">TweetAppへようこそ</h1>
+    <p class="lead">これは勉強用に作ったTwitterのようなアプリです。</p>
+    <hr class="my-4">
+    <p>下のボタンから新規登録できます。</p>
+    <%= link_to "新規登録", signup_path, class:'btn btn-primary btn-lg'%>
+  </div>
+<% end %>

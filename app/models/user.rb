@@ -1,4 +1,6 @@
 class User < ApplicationRecord
+  has_many :posts, dependent: :destroy
+  mount_uploader :user_image, UserImageUploader
   attr_accessor :remember_token, :activation_token, :reset_token
   before_save :email_downcase
   before_create :create_activation_digest
@@ -6,9 +8,12 @@ class User < ApplicationRecord
   VALID_EMAIL_REGEX = /\A[\w+\-.]+@[a-z\d\-]+(\.[a-z\d\-]+)*\.[a-z]+\z/i
   validates :email, presence: true, length: { maximum: 255 }, format: { with: VALID_EMAIL_REGEX }, uniqueness: { case_sensitive: false}
   validates :password, presence: true, length: { minimum: 6 }, allow_nil: true
+  validate :user_image_size
   has_secure_password
 
   class << self
+
+
     def digest(string)
       cost = ActiveModel::SecurePassword.min_cost ? BCrypt::Engine::MIN_COST :
       BCrypt::Engine.cost
@@ -57,6 +62,9 @@ class User < ApplicationRecord
     reset_sent_at < 2.hours.ago
   end
 
+  def feed
+    Post.where('user_id = ?', id)
+  end
   private
     def email_downcase
       self.email = email.downcase
@@ -65,5 +73,12 @@ class User < ApplicationRecord
     def create_activation_digest
       self.activation_token = User.new_token
       self.activation_digest = User.digest(activation_token)
+    end
+
+
+    def user_image_size
+      if user_image.size > 5.megabytes
+        errors.add(:user_image, "画像を５MB未満にしてください。")
+      end
     end
 end

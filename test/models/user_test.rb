@@ -75,4 +75,12 @@ class UserTest < ActiveSupport::TestCase
   test "when remember_digest is nil" do
     assert_not @user.authenticated?(:remember, '')
   end
+
+  test "when associated account destroy, posts also destroyed" do
+    @user.save
+    @user.posts.create!(content: 'lorem jkklk')
+    assert_difference 'Post.count', -1 do
+      @user.destroy
+    end
+  end
 end
