@@ -19,5 +19,6 @@ module TweetApp
     config.active_record.default_timezone = :utc
     config.i18n.default_locale = :ja
     config.autoload_paths += Dir[Rails.root.join('app', 'uploaders')]
+    config.action_view.embed_authenticity_token_in_remote_forms = true
   end
 end

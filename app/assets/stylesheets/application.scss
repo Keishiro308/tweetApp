@@ -69,7 +69,9 @@
   }
 
   /* header */
-
+  nav{
+    margin-bottom: 10px;
+  }
   #logo {
     float: left;
     margin-right: 10px;
@@ -129,6 +131,13 @@
   aside {
     section.user_info {
       margin-top: 20px;
+      span{
+        img{
+          height: 50px;
+          width: 50px;
+          border-radius: 50%;
+        }
+      }
     }
     section {
       padding: 10px 0;
@@ -304,4 +313,16 @@
     input {
       border: 0;
     }
+  }
+
+  .user_image{
+    img{
+      height: 50px;
+      width: 50px;
+      border-radius: 50%;
+    }
+  }
+
+  .user_list{
+    display: inline;
   }

@@ -1,5 +1,5 @@
 class UsersController < ApplicationController
-  before_action :logged_in_user, only: [:edit, :update, :destroy]
+  before_action :logged_in_user, only: [:edit, :update, :destroy, :following, :followers]
   before_action :correct_user, only: [:edit, :update, :destroy]
 
   def new
@@ -41,6 +41,20 @@ class UsersController < ApplicationController
     User.find(params[:id]).destroy
     flash[:success] = 'アカウントを削除しました。'
     redirect_to root_url
+  end
+
+  def following
+    @title = 'フォローしているユーザー'
+    @user = User.find(params[:id])
+    @users = @user.following.paginate(page: params[:page])
+    render 'show_follow'
+  end
+
+  def followers
+    @title = "フォロワー"
+    @user = User.find(params[:id])
+    @users = @user.followers.paginate(page: params[:page])
+    render 'show_follow'
   end
 
   private
