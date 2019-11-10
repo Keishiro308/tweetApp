@@ -81,3 +81,5 @@ gem 'faker',          '1.7.3'
 
 gem 'will_paginate',           '3.1.7'
 gem 'will_paginate-bootstrap4'
+
+gem 'font-awesome-sass', '~> 5.11.2'

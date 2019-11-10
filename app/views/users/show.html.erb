@@ -12,12 +12,27 @@
   </aside>
   <div class="col-md-8">
     <%= render 'follow_form' if logged_in? %>
+    <div class="tab_container">
+      <div id="post_tab" class="active_tab" rel="posts-container">投稿</div>
+      <div id="like_post_tab" rel="like-posts-container">いいねした投稿</div>
+    </div>
     <% if @user.posts.any? %>
-      <h3>Posts (<%= @user.posts.count %>)</h3>
-      <ol class="posts">
-        <%= render @posts %>
-      </ol>
-      <%= will_paginate @posts %>
-    <% end %>
+      <div id="posts-container" class="active content">
+        <h3>投稿 (<%= @user.posts.count %>)</h3>
+        <ol class="posts">
+          <%= render @posts %>
+        </ol>
+        <%= will_paginate @posts %>
+      </div>
+      <% end %>
+      <% if @user.like_posts.any? %>
+        <div id="like-posts-container" class="content">
+          <ol class="like_posts">
+            <h3>いいねした投稿(<%= @user.like_posts.count %>)</h3>
+            <%= render @like_posts%>
+          </ol>
+          <%= will_paginate @like_posts %>
+        </div>
+      <% end %>
   </div>
 </div>

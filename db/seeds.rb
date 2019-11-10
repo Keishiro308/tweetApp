@@ -36,3 +36,19 @@ following = users[2..50]
 followers = users[3..40]
 following.each { |followed| user.follow(followed) }
 followers.each { |follower| follower.follow(user) }
+
+
+likers = users[2..50]
+liked = users[2..6]
+
+likers.each do |liker|
+  user.posts.sample(7).each do |post|
+    liker.like(post)
+  end
+end
+
+liked.each do |liked|
+  liked.posts.sample(6).each do |post|
+    user.like(post)
+  end
+end

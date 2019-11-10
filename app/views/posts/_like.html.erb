@@ -1,0 +1,6 @@
+<%= form_with model: current_user.active_likes.build do |form| %>
+  <%= hidden_field_tag :post_id, post.id %>
+  <%= form.button type: 'submit' do %>
+    <%= icon('far', 'heart') %>
+  <% end %>
+<% end %>

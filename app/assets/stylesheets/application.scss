@@ -11,6 +11,8 @@
  * It is generally better to create a new file per style scope.
  *
  */
+  @import "font-awesome-sprockets";
+  @import "font-awesome";
   @import 'bootstrap';
 
 
@@ -71,6 +73,14 @@
   /* header */
   nav{
     margin-bottom: 10px;
+  }
+  .navbar-collapse{
+    .form-inline{
+      margin-left: auto;
+      input[type='search']{
+        width: 250px;
+      }
+    }
   }
   #logo {
     float: left;
@@ -212,7 +222,6 @@
   input, textarea, select, .uneditable-input {
     border: 1px solid #bbb;
     width: 100%;
-    margin-bottom: 15px;
     @include box_sizing;
   }
 
@@ -262,8 +271,33 @@
   }
 
   /* posts */
+  .tab_container{
+    display: flex;
+    font-size: 30px;
+    border-bottom: 1px solid #e8e8e8;
+    margin-bottom: 10px;
+    #post_tab, #like_post_tab, .post_tab, .user_tab{
+      padding: 10px;
+      color: rgb(116, 116, 116);
+      &.active_tab{
+        color: $primary;
+        border-bottom: 2px solid $primary;
+      }
+      &:hover{
+        background-color: rgba(0, 144, 255, .1);
 
-  .posts {
+      }
+    }
+  }
+
+  #posts-container, #like-posts-container, #user-container{
+    display: none;
+    &.active{
+      display: block;
+    }
+  }
+
+  .posts, .like_posts {
     list-style: none;
     padding: 0;
     li {
@@ -291,8 +325,11 @@
     }
     .timestamp {
       color: $gray-400;
-      display: block;
-      margin-left: 60px;
+      display: inline;
+      margin-left: 50px;
+    }
+    .like_form{
+      margin-left: 10px;
     }
     .gravatar {
       float: left;
@@ -324,5 +361,32 @@
   }
 
   .user_list{
+    display: inline;
+  }
+
+  .like_button{
+    display: inline-block;
+    height: 30px;
+    width: 30px;
+    border-radius: 50%;
+    transition: .3s;
+    &:hover{
+      background-color: rgba(235, 46, 119, 0.2);
+    }
+    form{
+      height: 100%;
+      width: 100%;
+      button{
+        text-align: center;
+        background: none;
+        border: none;
+        padding: 0;
+        height: 100%;
+        width: 100%;
+        color: rgb(235, 46, 119);
+      }
+    }
+  }
+  .like_count{
     display: inline;
   }

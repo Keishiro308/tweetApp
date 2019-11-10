@@ -1,12 +1,15 @@
 <li id="post-<%= post.id %>">
-  <span class="user"><span class="user_image"><%= image_tag post.user.user_image.url || "/assets/images/default.jpg" %></span><%= link_to post.user.name, post.user %></span>
+  <span class="user"><span class="user_image"><%= image_tag post.user.user_image.url %></span><%= link_to post.user.name, post.user %></span>
   <span class="content">
     <%= post.content %>
     <%= image_tag post.picture.url if post.picture? %>
   </span>
+  <span class="like_form">
+    <%= render 'posts/like_form', {post: post}  if logged_in?%>
+  </span>
   <span class="timestamp">
     <%= time_ago_in_words(post.created_at) %> 前
-    <% if current_user?(post.user) %>
+    <% if current_user?(post.user) && current_user?(@user) %>
       <%= link_to "delete", post, method: :delete,
                                        data: { confirm: "You sure?" } %>
     <% end %>

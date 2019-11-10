@@ -1,0 +1,5 @@
+<%= form_with model: current_user.active_likes.find_by(post_id: post.id), html: {method: :delete} do |form| %>
+  <%= form.button type: 'submit' do %>
+    <%= icon('fas', 'heart') %>
+  <% end %>
+<% end %>

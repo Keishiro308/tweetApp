@@ -1,5 +1,8 @@
 class User < ApplicationRecord
   has_many :posts, dependent: :destroy
+  has_many :active_likes, class_name: 'Like',
+            foreign_key: "user_id", dependent: :destroy
+  has_many :like_posts, through: :active_likes, source: :post
   has_many :active_relationships, class_name: 'Relationship',
             foreign_key: "follower_id", dependent: :destroy
   has_many :passive_relationships, class_name: "Relationship",
@@ -84,6 +87,18 @@ class User < ApplicationRecord
 
   def following?(other_user)
     following.include?(other_user)
+  end
+
+  def like(post)
+    like_posts << post
+  end
+
+  def unlike(post)
+    active_likes.find_by(post_id: post.id).destroy
+  end
+
+  def like?(post)
+    like_posts.include?(post)
   end
   private
     def email_downcase

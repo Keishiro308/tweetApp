@@ -5,9 +5,10 @@ Rails.application.routes.draw do
   root  'home#index'
   get '/signup', to: 'users#new'
   post '/signup', to: 'users#create'
+  get '/search', to: 'home#search'
   resources :users do
     member do
-      get :following, :followers
+      get :following, :followers, :likes
     end
   end
 
@@ -15,5 +16,6 @@ Rails.application.routes.draw do
   resources :password_rests, only:[:new,:create, :edit, :update]
   resources :posts, only: [:create, :destroy]
   resources :relationships, only: [:create, :destroy]
+  resources :likes, only: [:create, :destroy]
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
 end

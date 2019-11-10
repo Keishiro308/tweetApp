@@ -1,6 +1,7 @@
 class UsersController < ApplicationController
   before_action :logged_in_user, only: [:edit, :update, :destroy, :following, :followers]
   before_action :correct_user, only: [:edit, :update, :destroy]
+  
 
   def new
     @user = User.new
@@ -9,6 +10,8 @@ class UsersController < ApplicationController
   def show
     @user = User.find(params[:id])
     @posts = @user.posts.paginate(page: params[:page])
+    @like_posts = @user.like_posts.paginate(page: params[:page])
+    store_location
     redirect_to root_url and return unless @user.activated?
   end
 

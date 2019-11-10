@@ -1,0 +1,28 @@
+<div class="tab_container">
+  <div class="active_tab post_tab" rel="posts-container">投稿</div>
+  <div class="user_tab" rel="user-container">ユーザー</div>
+</div>
+  <div id="posts-container" class="active content">
+    <% if @posts.any? %>
+      <!-- true -->
+      <ol class="posts">
+        <%= render @posts %>
+      </ol>
+      <%= will_paginate @posts %>
+    <% else %>
+      <h3>検索した条件に合う投稿が見つかりません。</h3>
+      <!-- false -->
+    <% end %>
+  </div>
+  <div id="user-container" class="content">
+    <% if @users.any? %>
+      <!-- true -->
+      <ol class="users">
+        <%= render @users %>
+      </ol>
+      <%= will_paginate @users %>
+    <% else %>
+      <!-- false -->
+      <h3>検索した条件に合うユーザーが見つかりません。</h3>
+    <% end %>
+  </div>

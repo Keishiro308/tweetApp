@@ -1,0 +1,10 @@
+<div id="like-form-<%= post.id %>" class="like_button">
+  <% if current_user.like?(post) %>
+  <%= render 'posts/unlike', {post: post} %>
+  <% else %>
+  <%= render 'posts/like', {post: post} %>
+  <% end %>
+</div>
+<div id="like-count-<%= post.id %>" class="like_count">
+  <%= post.passive_likes.count %>
+</div>

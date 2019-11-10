@@ -19,6 +19,8 @@ class PostsController < ApplicationController
     redirect_to request.referrer || root_url
   end
 
+  
+
   private
     def post_params
       params.require(:post).permit(:content, :picture)

@@ -1,0 +1,5 @@
+<%= form_with scope: :home, local: true, url: search_path, method: :get, class: 'form-inline my-2' do |form| %>
+  <%= form.text_field :search, type: :search, class: "form-control mr-sm-2", placeholder: '投稿、ユーザー名検索' %>
+  <%= form.button "検索", class: "btn btn-outline-light my-2 my-sm-0" %>
+
+<% end %>
